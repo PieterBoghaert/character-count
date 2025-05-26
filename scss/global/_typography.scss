@@ -27,7 +27,7 @@
   }
 
   :root {
-    --fs-64: calc(34 / 16 * 1rem);
+    --fs-64: calc(64 / 16 * 1rem);
     --fs-40: calc(40 / 16 * 1rem);
     --fs-34: calc(34 / 16 * 1rem);
     --fs-24: calc(24 / 16 * 1rem);
@@ -36,6 +36,7 @@
 
     --font-size-h1: clamp(var(--fs-40), 0.625rem + 6vw, var(--fs-64));
     --font-size-h2: var(--fs-40);
+    --font-size-h3: var(--fs-24);
     --font-size-p: var(--fs-20);
     --font-size-summary: clamp(var(--fs-16), 0.955rem + 0.23vw, var(--fs-18));
     --font-default: "DM Sans", sans-serif;
@@ -65,6 +66,7 @@
     max-inline-size: 15ch;
     text-wrap: balance;
     font-weight: 700;
+    line-height: 1;
   }
 
   :is(h1, .h1, h2, .h2) {
@@ -75,7 +77,7 @@
   h3,
   .h3 {
     font-weight: 600;
-    font-size: var(--fs-24);
+    font-size: var(--font-size-h3);
   }
 
   p {
