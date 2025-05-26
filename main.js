@@ -78,7 +78,6 @@ document.addEventListener("DOMContentLoaded", () => {
     toggleButton.textContent = isExpanded ? "See less" : "See more";
 
     if (isExpanded) {
-      // Wait for expansion layout changes before scrolling
       const rect = wrapper.getBoundingClientRect();
       const absoluteBottom = window.scrollY + rect.bottom;
 
