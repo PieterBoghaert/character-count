@@ -1,0 +1,89 @@
+@use "../util/" as u;
+
+@layer typography {
+  @font-face {
+    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: "DM Sans";
+    font-style: normal;
+    font-weight: 400;
+    src: url("./../../assets/fonts/dm-sans-v15-latin-regular.woff2")
+      format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  }
+  /* dm-sans-600 - latin */
+  @font-face {
+    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: "DM Sans";
+    font-style: normal;
+    font-weight: 600;
+    src: url("./../../assets/fonts/dm-sans-v15-latin-600.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  }
+  /* dm-sans-700 - latin */
+  @font-face {
+    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: "DM Sans";
+    font-style: normal;
+    font-weight: 700;
+    src: url("./../../assets/fonts/dm-sans-v15-latin-700.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  }
+
+  :root {
+    --fs-64: calc(34 / 16 * 1rem);
+    --fs-40: calc(40 / 16 * 1rem);
+    --fs-34: calc(34 / 16 * 1rem);
+    --fs-24: calc(24 / 16 * 1rem);
+    --fs-20: calc(20 / 16 * 1rem);
+    --fs-16: 1rem;
+
+    --font-size-h1: clamp(var(--fs-40), 0.625rem + 6vw, var(--fs-64));
+    --font-size-h2: var(--fs-40);
+    --font-size-p: var(--fs-20);
+    --font-size-summary: clamp(var(--fs-16), 0.955rem + 0.23vw, var(--fs-18));
+    --font-default: "DM Sans", sans-serif;
+  }
+
+  body {
+    font-size: var(--font-size-p);
+    letter-spacing: -0.6px;
+    font-family: var(--font-default);
+    font-weight: 400;
+    line-height: 1.5;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    margin: 0;
+    text-wrap: balance;
+    line-height: normal;
+  }
+
+  h1,
+  .h1 {
+    font-size: var(--font-size-h1);
+    max-inline-size: 15ch;
+    text-wrap: balance;
+    font-weight: 700;
+  }
+
+  :is(h1, .h1, h2, .h2) {
+    font-weight: 700;
+    letter-spacing: -1px;
+  }
+
+  h3,
+  .h3 {
+    font-weight: 600;
+    font-size: var(--fs-24);
+  }
+
+  p {
+    max-inline-size: 50ch;
+  }
+
+  a {
+    text-decoration: none;
+    color: var(--c-purple-500);
+  }
+}

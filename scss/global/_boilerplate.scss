@@ -1,0 +1,94 @@
+@use "../util/" as u;
+
+@layer reset {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  ul,
+  ol,
+  figure {
+    margin: 0;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 500;
+  }
+
+  button,
+  fieldset,
+  input,
+  legend,
+  select,
+  textarea,
+  progress {
+    appearance: none;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-size: inherit;
+    font-family: inherit;
+    color: inherit;
+  }
+
+  img {
+    max-inline-size: 100%;
+    height: auto;
+    vertical-align: middle;
+    font-style: italic;
+    background-repeat: no-repeat;
+    background-size: cover;
+    shape-margin: 0.75rem;
+  }
+
+  ul {
+    padding-inline-start: 0;
+    list-style-type: none;
+  }
+}
+
+@layer global {
+  body,
+  section {
+    overflow-x: clip;
+  }
+
+  .hide-on-mobile {
+    @media (inline-size < calc(700 / 16 * 1rem)) {
+      display: none;
+    }
+  }
+
+  .visually-hidden {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+  }
+
+  button {
+    appearance: none;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+}

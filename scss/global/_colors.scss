@@ -1,0 +1,17 @@
+:root {
+  --c-white: hsl(0, 0%, 100%);
+  --c-neutral-900: hsl(233, 18%, 9%);
+  --c-neutral-800: hsl(235, 14%, 15%);
+  --c-neutral-700: hsl(235, 13%, 19%);
+  --c-neutral-600: hsl(234, 14%, 29%);
+  --c-neutral-200: hsl(240, 26%, 92%);
+  --c-neutral-100: hsl(240, 24%, 96%);
+  --c-purple-400: hsl(274, 90%, 80%);
+  --c-purple-500: hsl(274, 90%, 73%);
+  --c-yellow-500: hsl(37, 100%, 50%);
+  --c-orange-500: hsl(15, 99%, 67%);
+  --c-orange-800: hsl(15, 99%, 43%);
+
+  --color-bg: light-dark(var(--c-white), var(--c-neutral-900));
+  --color-text: light-dark(var(--c-neutral-900), var(--c-neutral-200));
+}

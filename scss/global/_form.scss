@@ -1,0 +1,77 @@
+@use "../util/" as u;
+
+input[type="checkbox"] {
+  block-size: 1rem;
+  inline-size: 1rem;
+  border-radius: var(--br-4);
+  border: 1px solid;
+
+  &:checked {
+    background: url("./../../assets/images/icon-check.svg") var(--c-purple-400);
+    background-position: center;
+    background-size: var(--spacing-150);
+  }
+
+  &:hover,
+  &:focus {
+    border-radius: var(--spacing-050);
+    box-shadow: 0px 0px 0px 2px var(--c-white),
+      0px 0px 0px 4px var(--c-purple-400);
+    outline-color: var(--c-neutral-200);
+    border-color: var(--c-neutral-200);
+  }
+}
+
+input[type="number"] {
+  padding: var(--spacing-050) var(--spacing-125);
+  border-radius: var(--br-6);
+  border: 1px solid var(--c-neutral-600);
+  inline-size: min-content;
+  font-size: inherit;
+  max-inline-size: var(--spacing-1000);
+  -moz-appearance: textfield;
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  &:focus {
+    outline-color: var(--c-purple-500);
+  }
+}
+
+.counter-form {
+  textarea {
+    width: 100%;
+    padding: var(--spacing-250);
+    border-radius: var(--br-12);
+    border: 2px solid light-dark(var(--c-neutral-200), var(--c-neutral-600));
+    background-color: light-dark(var(--c-neutral-100), var(--c-neutral-700));
+    transition: background-color 0.1s ease-in, border-color 0.1s,
+      outline-color 0.1s;
+
+    &:hover {
+      background-color: light-dark(var(--c-neutral-200), var(--c-neutral-800));
+    }
+
+    &:focus {
+      background-color: light-dark(var(--c-neutral-200), var(--c-neutral-800));
+      border-color: var(--c-purple-500);
+      outline-color: var(--c-purple-500);
+      box-shadow: 0px 0px 10px 0px var(--c-purple-400);
+    }
+  }
+
+  label {
+    cursor: pointer;
+    font-size: var(--fs-16);
+  }
+}
+
+@include u.breakpoint("medium") {
+  input[type="number"] {
+    max-block-size: var(--spacing-300);
+  }
+}

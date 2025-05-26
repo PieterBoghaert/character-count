@@ -1,0 +1,338 @@
+@use "../util/" as u;
+
+@layer layout {
+  :root {
+    color-scheme: light dark;
+    --spacing-0: 0;
+    --spacing-025: calc(2 / 16 * 1rem);
+    --spacing-050: calc(4 / 16 * 1rem);
+    --spacing-075: calc(6 / 16 * 1rem);
+    --spacing-100: calc(8 / 16 * 1rem);
+    --spacing-125: calc(10 / 16 * 1rem);
+    --spacing-150: calc(12 / 16 * 1rem);
+    --spacing-175: calc(14 / 16 * 1rem);
+    --spacing-200: 1rem;
+    --spacing-250: calc(20 / 16 * 1rem);
+    --spacing-300: calc(24 / 16 * 1rem);
+    --spacing-400: calc(32 / 16 * 1rem);
+    --spacing-500: calc(40 / 16 * 1rem);
+    --spacing-600: calc(48 / 16 * 1rem);
+    --spacing-800: calc(64 / 16 * 1rem);
+    --spacing-1000: calc(80 / 16 * 1rem);
+
+    --bs: 0px 2px 2px 0px rgba(194, 206, 225, 0.2),
+      0px 1px 5px 1px rgba(194, 206, 225, 0.22);
+
+    --bs-small: 0px 2px 3px 0px hsl(213, 55%, 90%);
+
+    --br-4: 0.25rem;
+    --br-6: 0.375rem;
+    --br-8: 0.5rem;
+    --br-10: 0.625rem;
+    --br-12: 0.75rem;
+    --br-16: 1rem;
+    --br-20: 1.25rem;
+    --br-24: 1.5rem;
+    --br-full: 50%;
+    --wrapper-size: calc(990 / 16 * 1rem) + calc(var(--spacing-200) * 2);
+  }
+
+  html {
+    color-scheme: light dark;
+
+    &.light {
+      color-scheme: light;
+    }
+
+    &.dark {
+      color-scheme: dark;
+    }
+  }
+
+  body {
+    background-image: url("./../../assets/images/bg-light-theme.png");
+    color: var(--color-text);
+    min-height: 100vh;
+    margin: 0;
+    background: var(--color-bg);
+  }
+
+  .wrapper {
+    inline-size: min(100% - var(--spacing-200), var(--wrapper-size));
+    margin-inline: auto;
+  }
+
+  .warning {
+    position: fixed;
+    top: 0;
+    inline-size: 100%;
+    background-color: var(--c-purple-950);
+    color: var(--c-white);
+    padding-inline: var(--spacing-100);
+    padding-block: var(--spacing-100);
+    text-align: center;
+
+    p {
+      max-width: 90ch;
+      margin-inline: auto;
+    }
+
+    /* Firefox and Safari somehow support 'allow-discrete' but the animation is not smooth, 
+    that's why I add another more recent css rule to show the warning */
+    @supports (
+      background-color: light-dark(var(--c-neutral-100), --c-neutral-800)
+    ) {
+      display: none;
+    }
+  }
+
+  .dark {
+    body {
+      background-image: url("./../../assets/images/bg-dark-theme.png");
+    }
+
+    .site-header {
+      .logo-light,
+      .theme-icon-light {
+        display: block;
+      }
+
+      .logo-dark,
+      .theme-icon-dark {
+        display: none;
+      }
+    }
+
+    .density-toggle::after {
+      background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iNyIgdmlld0JveD0iMCAwIDEyIDciIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik02LjI1IDAuNjU2MjVMMTAuODc1IDUuMjE4NzVDMTEuMDMxMiA1LjM3NSAxMS4wMzEyIDUuNjI1IDEwLjg3NSA1Ljc1TDEwLjI1IDYuMzc1QzEwLjEyNSA2LjUzMTI1IDkuODc1IDYuNTMxMjUgOS43MTg3NSA2LjM3NUw2IDIuNjg3NUwyLjI1IDYuMzc1QzIuMDkzNzUgNi41MzEyNSAxLjg3NSA2LjUzMTI1IDEuNzE4NzUgNi4zNzVMMS4wOTM3NSA1Ljc1QzAuOTM3NSA1LjYyNSAwLjkzNzUgNS4zNzUgMS4wOTM3NSA1LjIxODc1TDUuNzE4NzUgMC42NTYyNUM1Ljg3NSAwLjUgNi4wOTM3NSAwLjUgNi4yNSAwLjY1NjI1WiIgZmlsbD0iI0U0RTRFRiIvPgo8L3N2Zz4K");
+    }
+
+    .density__items-wrapper {
+      & + .density-toggle::after {
+        background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iNyIgdmlld0JveD0iMCAwIDEyIDciIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik01LjcxODc1IDYuMzc1TDEuMDkzNzUgMS43ODEyNUMwLjkzNzUgMS42NTYyNSAwLjkzNzUgMS40MDYyNSAxLjA5Mzc1IDEuMjVMMS43MTg3NSAwLjY1NjI1QzEuODc1IDAuNSAyLjA5Mzc1IDAuNSAyLjI1IDAuNjU2MjVMNiA0LjM0Mzc1TDkuNzE4NzUgMC42NTYyNUM5Ljg3NSAwLjUgMTAuMTI1IDAuNSAxMC4yNSAwLjY1NjI1TDEwLjg3NSAxLjI1QzExLjAzMTIgMS40MDYyNSAxMS4wMzEyIDEuNjU2MjUgMTAuODc1IDEuNzgxMjVMNi4yNSA2LjM3NUM2LjA5Mzc1IDYuNTMxMjUgNS44NzUgNi41MzEyNSA1LjcxODc1IDYuMzc1WiIgZmlsbD0iI0U0RTRFRiIvPgo8L3N2Zz4K");
+      }
+    }
+  }
+
+  .site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-block: var(--spacing-200);
+
+    &__theme {
+      cursor: pointer;
+      border-radius: var(--br-8);
+      inline-size: calc(44 / 16 * 1rem);
+      aspect-ratio: 1 / 1;
+      display: grid;
+      place-content: center;
+      background-color: light-dark(var(--c-neutral-100), var(--c-neutral-700));
+    }
+
+    .theme-icon,
+    .logo {
+      display: none;
+    }
+
+    /* show the light logos by default */
+    .logo-dark,
+    .theme-icon-dark {
+      display: block;
+    }
+  }
+
+  .counter-container {
+    h1 {
+      margin-block: var(--spacing-600);
+      text-align: center;
+      margin-inline: auto;
+    }
+
+    margin-block-end: var(--spacing-1000);
+  }
+
+  .counter-options {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    margin-block-start: var(--spacing-200);
+    font-size: var(--fs-16);
+
+    &__cbx {
+      display: flex;
+      flex-direction: column;
+      column-gap: var(--spacing-300);
+      row-gap: var(--spacing-150);
+      margin-block-end: var(--spacing-150);
+    }
+
+    .form-group {
+      display: flex;
+      align-items: center;
+      column-gap: var(--spacing-125);
+    }
+  }
+
+  .stats {
+    margin-block: var(--spacing-500) var(--spacing-300);
+    display: grid;
+    gap: var(--spacing-200);
+
+    &__item {
+      padding: var(--spacing-250);
+      border-radius: var(--br-12);
+      background-repeat: no-repeat;
+      background-position: calc(100% + (150px / 3));
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-100);
+      color: var(--c-neutral-900);
+
+      &:nth-of-type(1) {
+        background-image: url("./../../assets/images/pattern-character-count.svg");
+        background-color: var(--c-purple-400);
+      }
+
+      &:nth-of-type(2) {
+        background-image: url("./../../assets/images/pattern-word-count.svg");
+        background-color: var(--c-yellow-500);
+      }
+
+      &:nth-of-type(3) {
+        background-image: url("./../../assets/images/pattern-sentence-count.svg");
+        background-color: var(--c-orange-500);
+      }
+    }
+  }
+
+  .density {
+    &__item {
+      display: flex;
+      align-items: center;
+      column-gap: var(--spacing-175);
+      font-size: var(--fs-16);
+    }
+
+    &__items-wrapper {
+      max-block-size: var(--initial-density-height, 120px);
+      overflow-y: clip;
+      transition: max-block-size 0.4s ease;
+      margin-block: var(--spacing-250);
+      display: flex;
+      flex-direction: column;
+      row-gap: var(--spacing-150);
+
+      &.expanded {
+        max-block-size: var(--max-density-height, 1000px);
+
+        & + .density-toggle::after {
+          transform: scaleY(-1) translateY(50%);
+          background-position-y: top;
+        }
+      }
+    }
+
+    &__letter {
+      inline-size: var(--spacing-200);
+    }
+
+    &__progress {
+      flex-grow: 1;
+      background-color: light-dark(var(--c-neutral-100), var(--c-neutral-800));
+      border-radius: var(--br-12);
+      overflow: clip;
+      block-size: var(--spacing-150);
+
+      &::-webkit-progress-bar {
+        background-color: light-dark(
+          var(--c-neutral-100),
+          var(--c-neutral-800)
+        );
+        border-radius: var(--br-12);
+      }
+
+      &::-webkit-progress-value {
+        background-color: var(--c-purple-400);
+        border-radius: var(--br-12);
+      }
+
+      &::-moz-progress-bar {
+        background-color: var(--c-purple-400);
+        border-radius: var(--br-12);
+      }
+    }
+
+    &__percentage {
+      white-space: nowrap;
+      inline-size: calc(87 / 16 * 1rem);
+      text-align: end;
+    }
+  }
+
+  .density-toggle {
+    position: relative;
+    font-size: inherit;
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: calc(100% + var(--spacing-100));
+      top: 50%;
+      transform: translateY(-50%);
+      background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iNyIgdmlld0JveD0iMCAwIDEyIDciIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik01LjcxODc1IDYuMzc1TDEuMDkzNzUgMS43ODEyNUMwLjkzNzUgMS42NTYyNSAwLjkzNzUgMS40MDYyNSAxLjA5Mzc1IDEuMjVMMS43MTg3NSAwLjY1NjI1QzEuODc1IDAuNSAyLjA5Mzc1IDAuNSAyLjI1IDAuNjU2MjVMNiA0LjM0Mzc1TDkuNzE4NzUgMC42NTYyNUM5Ljg3NSAwLjUgMTAuMTI1IDAuNSAxMC4yNSAwLjY1NjI1TDEwLjg3NSAxLjI1QzExLjAzMTIgMS40MDYyNSAxMS4wMzEyIDEuNjU2MjUgMTAuODc1IDEuNzgxMjVMNi4yNSA2LjM3NUM2LjA5Mzc1IDYuNTMxMjUgNS44NzUgNi41MzEyNSA1LjcxODc1IDYuMzc1WiIgZmlsbD0iIzEyMTMxQSIvPgo8L3N2Zz4K");
+      background-repeat: no-repeat;
+      background-position-y: bottom;
+      block-size: var(--spacing-125);
+      inline-size: var(--spacing-150);
+    }
+  }
+
+  .attribution {
+    text-align: center;
+    margin-block-end: var(--spacing-500);
+  }
+
+  .error-message {
+    color: var(--c-orange-800);
+    position: relative;
+    padding-inline-start: calc(14px + var(--spacing-100));
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset-inline-start: 0;
+      inset-block-start: 7px;
+      inline-size: 14px;
+      block-size: 18px;
+      background-image: url("./../../assets/images/icon-info.svg");
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+  }
+
+  @include u.breakpoint("medium") {
+    .wrapper {
+      inline-size: min(100% - var(--spacing-400), var(--wrapper-size));
+    }
+
+    .counter-options {
+      flex-direction: row;
+      align-items: center;
+
+      &__cbx {
+        flex-direction: row;
+        margin-block-end: 0;
+      }
+    }
+
+    .stats {
+      margin-block-start: var(--spacing-600);
+      grid-template-columns: repeat(3, 1fr);
+      &__item {
+        padding: var(--spacing-200);
+      }
+    }
+  }
+}

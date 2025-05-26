@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/favicon-32x32.png"
+    />
+
+    <title>Frontend Mentor | Character counter</title>
+
+    <link rel="stylesheet" href="./dist/css/style.min.css" />
+    <script src="./main.js" defer></script>
+  </head>
+  <body>
+    <div class="warning">
+      This browser does not support the light-dark function
+    </div>
+    <header class="site-header wrapper">
+      <div class="site-header__logo">
+        <!-- <picture>
+          <source
+            srcset="./assets/images/logo-dark-theme.svg"
+            media="(prefers-color-scheme: dark)"
+          />
+          <source
+            srcset="./assets/images/logo-light-theme.svg"
+            media="(prefers-color-scheme: light)"
+          />
+          
+        </picture> -->
+        <img
+          src="./assets/images/logo-light-theme.svg"
+          class="logo logo-dark"
+          alt="Logo"
+        />
+        <img
+          src="./assets/images/logo-dark-theme.svg"
+          class="logo logo-light"
+          alt="Logo"
+        />
+      </div>
+      <div class="site-header__theme" id="js-theme-toggle">
+        <!-- <picture>
+          <source
+            srcset="./assets/images/icon-sun.svg"
+            media="(prefers-color-scheme: dark)"
+          />
+          <source
+            srcset="./assets/images/icon-moon.svg"
+            media="(prefers-color-scheme: light)"
+          />
+          <img src="./assets/images/icon-moon.svg" alt="Moon icon" />
+        </picture> -->
+        <img
+          src="./assets/images/icon-moon.svg"
+          class="theme-icon theme-icon-dark"
+          alt="Moon icon"
+        />
+        <img
+          src="./assets/images/icon-sun.svg"
+          class="theme-icon theme-icon-light"
+          alt="Sun icon"
+        />
+      </div>
+    </header>
+    <main class="counter-container wrapper">
+      <h1>Analyze your text in real-time.</h1>
+      <form action="" novalidate id="js-counter-form" class="counter-form">
+        <label for="text" class="visually-hidden">Textarea</label>
+        <textarea
+          name="text"
+          id="text"
+          cols="30"
+          rows="10"
+          placeholder="Start typing here… (or paste your text)"
+        ></textarea>
+        <div class="error-message" hidden id="js-error-message">
+          <p>Limit reached! Your text exceeds 300 characters.</p>
+        </div>
+        <div class="counter-options">
+          <div class="counter-options__cbx">
+            <div class="form-group">
+              <input
+                type="checkbox"
+                name="exclude_spaces"
+                id="exclude_spaces"
+                value="exclude_spaces"
+              />
+              <label for="exclude_spaces">Exclude Spaces</label>
+            </div>
+            <div class="form-group">
+              <input
+                type="checkbox"
+                name="set_character_limit"
+                id="set_character_limit"
+                value="set_character_limit"
+              />
+              <label for="set_character_limit">Set Character Limit</label>
+            </div>
+            <div class="form-group">
+              <input
+                type="number"
+                name="character-limit"
+                id="character-limit"
+                value=""
+                min="1"
+                step="1"
+                value="1"
+                hidden
+              />
+              <label for="set_character_limit" class="visually-hidden"
+                >Character Limit</label
+              >
+            </div>
+          </div>
+          <div>
+            Approx. reading time: <span id="js-reading-time">0 minutes</span>
+          </div>
+        </div>
+      </form>
+      <section class="stats">
+        <div class="stats__item">
+          <h2 class="stats__value h1" id="js-total-characters">00</h2>
+          <span class="stats__label">Total Characters</span>
+        </div>
+        <div class="stats__item">
+          <h2 class="stats__value h1" id="js-total-words">00</h2>
+          <span class="stats__label">Word Count</span>
+        </div>
+        <div class="stats__item">
+          <h2 class="stats__value h1" id="js-total-sentences">00</h2>
+          <span class="stats__label">Sentence Count</span>
+        </div>
+      </section>
+
+      <section class="density">
+        <h3 class="density__title">Letter Density</h3>
+        <div class="density__items-wrapper" aria-expanded="false">
+          No characters found. Start typing to see letter density.
+        </div>
+        <button id="density-toggle" class="density-toggle" hidden>
+          Read More
+        </button>
+      </section>
+    </main>
+  </body>
+</html>
